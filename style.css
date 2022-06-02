@@ -1,0 +1,47 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.coordinate-metrics{
+  color: white;
+}
+
+.joystick-container{
+  height: 22rem;
+  width: 22rem;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 20%;
+  /* left: 10%; */
+}
+
+.joystick-big-circle{
+    height: 20rem;
+    width: 20rem;
+    background-color: tomato;
+    border-radius: 50%;
+    position: absolute;
+    top: 4.5%;
+    left: 4.5%;
+  }
+
+.joystick-small-circle{
+    height: 6rem;
+    width: 6rem;
+    background-color: lightseagreen;
+    border-radius: 50%;
+    position: relative;
+    top: 35%;
+    left: 35%;
+  }
+  

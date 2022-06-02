@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joystick 2.0.0</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='./style.css'>
+</head>
+<body>
+    <div class="container">
+        <p id="coordinateMetrics" class="coordinate-metrics">X: 0 || Y: 0 || Angle: 0</p>
+        <!-- joystick start -->
+        <div class="joystick-container">
+            <div id="js-big-circle" class="joystick-big-circle" ontouchstart="getMovement(event)" ontouchend="getMovement(event)" ontouchmove="getMovement(event)">
+                <div id="js-small-circle" class="joystick-small-circle" ></div>
+            </div>
+        </div>
+        <!-- joystick end -->
+    </div>
+    <script src='./script.js'></script>
+</body>
+</html>
