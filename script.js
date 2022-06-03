@@ -55,14 +55,14 @@ function getMovement(event){
         console.log("Y: "+event.changedTouches[0].clientY);
         let smallCirclecoordinates = getCoordinate("js-small-circle"),
             bigCirclecoordinates = getCoordinate("js-big-circle"),
-            angle = getAngle(bigCirclecoordinates.left, bigCirclecoordinates.top, event.changedTouches[0].clientX, event.changedTouches[0].clientY),
             smallCircleX = (bigCirclecoordinates.width/2)-(smallCirclecoordinates.width/2),
             smallCircleY = (bigCirclecoordinates.height/2)-(smallCirclecoordinates.height/2);
 
-        
+
+        // document.getElementById("coordinateMetrics").innerText = `X: ${(smallCircleX + deltaX)} || Y: ${(smallCircleY + deltaY)} || Angle: ${angle}`;
         document.getElementById("js-small-circle").style.left =  smallCircleX+"px"; // 48 = smallcircel radius 
         document.getElementById("js-small-circle").style.top = smallCircleY+"px";
-        console.log("end-angle: "+angle);
+        // console.log("end-angle: "+angle);
     }else if(event.type === "touchmove"){
         console.log("touchmove");
         console.log("X: "+event.changedTouches[0].clientX);
@@ -73,24 +73,24 @@ function getMovement(event){
             bigCirclecoordinates = getCoordinate("js-big-circle"),
             smallCircleX = (bigCirclecoordinates.width/2)-(smallCirclecoordinates.width/2),
             smallCircleY = (bigCirclecoordinates.height/2)-(smallCirclecoordinates.height/2),
-            angle = getAngle(smallCirclecoordinates.left, smallCirclecoordinates.top, event.changedTouches[0].clientX, event.changedTouches[0].clientY);
-            movement = getOffset(smallCircleX, smallCircleY, (event.changedTouches[0].clientX - smallCirclecoordinates.left), (event.changedTouches[0].clientY - smallCirclecoordinates.top));
+            angle = getAngle(smallCircleX, smallCircleY, (smallCircleX + deltaX), (smallCircleY + deltaY));
+            //movement = getOffset(smallCircleX, smallCircleY, (event.changedTouches[0].clientX - smallCirclecoordinates.left), (event.changedTouches[0].clientY - smallCirclecoordinates.top));
         deltaX = event.changedTouches[0].clientX - clientX;
         deltaY = event.changedTouches[0].clientY - clientY;
-            console.log("circleX: "+smallCircleX);
-            console.log("circleY: "+smallCircleY);
-            console.log("diffX: "+ (event.changedTouches[0].clientX - smallCircleX));
-            console.log("diffY: "+ (event.changedTouches[0].clientY - smallCircleY));
-            console.log("deltaX: "+ deltaX);
-            console.log("deltaY: "+ deltaY);
-            console.log("left: "+ ((event.changedTouches[0].clientX - smallCircleX)));
-            console.log("top: "+((event.changedTouches[0].clientY - smallCircleY)));
+            // console.log("circleX: "+smallCircleX);
+            // console.log("circleY: "+smallCircleY);
+            // console.log("diffX: "+ (event.changedTouches[0].clientX - smallCircleX));
+            // console.log("diffY: "+ (event.changedTouches[0].clientY - smallCircleY));
+            // console.log("deltaX: "+ deltaX);
+            // console.log("deltaY: "+ deltaY);
+            // console.log("left: "+ ((event.changedTouches[0].clientX - smallCircleX)));
+            // console.log("top: "+((event.changedTouches[0].clientY - smallCircleY)));
         
-        
+        document.getElementById("coordinateMetrics").innerText = `X: ${Math.round(smallCircleX + deltaX)} || Y: ${Math.round(smallCircleY + deltaY)} || Angle: ${Math.round(angle)}°`; 
         document.getElementById("js-small-circle").style.left =  ((smallCircleX + deltaX))+"px";
         document.getElementById("js-small-circle").style.top = ((smallCircleY + deltaY))+"px";
 
-        // console.log("angle: "+angle);
+        console.log("angle: "+angle);
         
     }else{
         console.log("X: "+window.scrollX);
