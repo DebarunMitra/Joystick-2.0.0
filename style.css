@@ -40,8 +40,15 @@ html, body{
     width: 6rem;
     background-color: lightseagreen;
     border-radius: 50%;
-    position: relative;
+    /* position: relative;
+    top: 35%;
+    left: 35%; */
+    position: absolute;
     top: 35%;
     left: 35%;
+    /* top: 112px;
+    left: 112px; */
+    /* top: -88.54093933105469px;
+    left: 66.17727661132812px; */
   }
   
