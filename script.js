@@ -55,15 +55,15 @@ function isItInTheCircle(bigRadius, smallRadius, distanceX, distanceY) {
 function getMovement(event){
     // console.log(event);
     if(event.type === "touchstart"){
-        console.log("touchstart");
-        console.log("X: "+event.touches[0].clientX);
-        console.log("Y: "+event.touches[0].clientY);
+        // console.log("touchstart");
+        // console.log("X: "+event.touches[0].clientX);
+        // console.log("Y: "+event.touches[0].clientY);
         clientX = event.touches[0].clientX;
         clientY = event.touches[0].clientY;
     }else if(event.type === "touchend"){
-        console.log("touchend");
-        console.log("X: "+event.changedTouches[0].clientX);
-        console.log("Y: "+event.changedTouches[0].clientY);
+        // console.log("touchend");
+        // console.log("X: "+event.changedTouches[0].clientX);
+        // console.log("Y: "+event.changedTouches[0].clientY);
         let smallCirclecoordinates = getCoordinate("js-small-circle"),
             bigCirclecoordinates = getCoordinate("js-big-circle"),
             smallCircleX = (bigCirclecoordinates.width/2)-(smallCirclecoordinates.width/2),
@@ -75,11 +75,11 @@ function getMovement(event){
         document.getElementById("js-small-circle").style.top = smallCircleY+"px";
         // console.log("end-angle: "+angle);
     }else if(event.type === "touchmove"){
-        console.log("touchmove");
-        console.log("X: "+event.changedTouches[0].clientX);
-        console.log("Y: "+event.changedTouches[0].clientY);
-        console.log("clientX: "+clientX);
-        console.log("clientY: "+clientY);
+        // console.log("touchmove");
+        // console.log("X: "+event.changedTouches[0].clientX);
+        // console.log("Y: "+event.changedTouches[0].clientY);
+        // console.log("clientX: "+clientX);
+        // console.log("clientY: "+clientY);
         let smallCirclecoordinates = getCoordinate("js-small-circle"),
             bigCirclecoordinates = getCoordinate("js-big-circle"),
             smallCircleX = (bigCirclecoordinates.width/2)-(smallCirclecoordinates.width/2),
@@ -96,21 +96,19 @@ function getMovement(event){
             // console.log("deltaY: "+ deltaY);
             // console.log("left: "+ ((event.changedTouches[0].clientX - smallCircleX)));
             // console.log("top: "+((event.changedTouches[0].clientY - smallCircleY)));
-        console.log("angle: "+angle);
+        // console.log("angle: "+angle);
         document.getElementById("coordinateMetrics").innerText = `X: ${Math.round(deltaX)} || Y: ${Math.round(deltaY)} || Angle: ${Math.round(angle)}°`; 
         if(isItInTheCircle((bigCirclecoordinates.width/2), (smallCirclecoordinates.width/2), (deltaX), (deltaY))){
-            console.log("Inside");
+            // console.log("Inside");
             document.getElementById("js-small-circle").style.left =  ((smallCircleX + deltaX))+"px";
             document.getElementById("js-small-circle").style.top = ((smallCircleY + deltaY))+"px";
-        }else{
-            console.log("outside");
         }
     }else{
-        console.log("X: "+window.scrollX);
-        console.log("Y: "+window.scrollY);
+        // console.log("X: "+window.scrollX);
+        // console.log("Y: "+window.scrollY);
     }
 }
 
-console.log(getCoordinate("js-big-circle"));
-console.log(getCoordinate("js-small-circle"));
+// console.log(getCoordinate("js-big-circle"));
+// console.log(getCoordinate("js-small-circle"));
 
