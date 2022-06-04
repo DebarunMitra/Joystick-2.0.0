@@ -36,9 +36,20 @@ function getAngle(startX, startY, targetX, targetY){
     return theta;
 }
 
-function moveLeft(id, distance){
-    let element = document.getElementById(id).getBoundingClientRect();
-    document.getElementById(id).style.left = getOffset(id, distance, 0).left;
+function isItInTheCircle(bigRadius, smallRadius, distanceX, distanceY) {
+    // console.log(bigRadius);
+    // console.log(smallRadius);
+    // console.log(Math.abs(distanceX));
+    // console.log((Math.abs(distanceY)));
+    // console.log(smallRadius+Math.abs(distanceX));
+    // console.log((smallRadius+Math.abs(distanceY)));
+    
+   //(smallRadius+Math.abs(distanceX)) && bigRadius>= (smallRadius+Math.abs(distanceY))
+    if(bigRadius>= Math.round(Math.sqrt(Math.pow(Math.abs(distanceX), 2) + Math.pow(Math.abs(distanceY), 2))+smallRadius)){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 function getMovement(event){
@@ -58,7 +69,7 @@ function getMovement(event){
             smallCircleX = (bigCirclecoordinates.width/2)-(smallCirclecoordinates.width/2),
             smallCircleY = (bigCirclecoordinates.height/2)-(smallCirclecoordinates.height/2);
 
-
+            document.getElementById("coordinateMetrics").innerText = `X: 0 || Y: 0 || Angle: 0°`;
         // document.getElementById("coordinateMetrics").innerText = `X: ${(smallCircleX + deltaX)} || Y: ${(smallCircleY + deltaY)} || Angle: ${angle}`;
         document.getElementById("js-small-circle").style.left =  smallCircleX+"px"; // 48 = smallcircel radius 
         document.getElementById("js-small-circle").style.top = smallCircleY+"px";
@@ -74,7 +85,7 @@ function getMovement(event){
             smallCircleX = (bigCirclecoordinates.width/2)-(smallCirclecoordinates.width/2),
             smallCircleY = (bigCirclecoordinates.height/2)-(smallCirclecoordinates.height/2),
             angle = getAngle(smallCircleX, smallCircleY, (smallCircleX + deltaX), (smallCircleY + deltaY));
-            //movement = getOffset(smallCircleX, smallCircleY, (event.changedTouches[0].clientX - smallCirclecoordinates.left), (event.changedTouches[0].clientY - smallCirclecoordinates.top));
+            
         deltaX = event.changedTouches[0].clientX - clientX;
         deltaY = event.changedTouches[0].clientY - clientY;
             // console.log("circleX: "+smallCircleX);
@@ -85,13 +96,15 @@ function getMovement(event){
             // console.log("deltaY: "+ deltaY);
             // console.log("left: "+ ((event.changedTouches[0].clientX - smallCircleX)));
             // console.log("top: "+((event.changedTouches[0].clientY - smallCircleY)));
-        
-        document.getElementById("coordinateMetrics").innerText = `X: ${Math.round(smallCircleX + deltaX)} || Y: ${Math.round(smallCircleY + deltaY)} || Angle: ${Math.round(angle)}°`; 
-        document.getElementById("js-small-circle").style.left =  ((smallCircleX + deltaX))+"px";
-        document.getElementById("js-small-circle").style.top = ((smallCircleY + deltaY))+"px";
-
         console.log("angle: "+angle);
-        
+        document.getElementById("coordinateMetrics").innerText = `X: ${Math.round(deltaX)} || Y: ${Math.round(deltaY)} || Angle: ${Math.round(angle)}°`; 
+        if(isItInTheCircle((bigCirclecoordinates.width/2), (smallCirclecoordinates.width/2), (deltaX), (deltaY))){
+            console.log("Inside");
+            document.getElementById("js-small-circle").style.left =  ((smallCircleX + deltaX))+"px";
+            document.getElementById("js-small-circle").style.top = ((smallCircleY + deltaY))+"px";
+        }else{
+            console.log("outside");
+        }
     }else{
         console.log("X: "+window.scrollX);
         console.log("Y: "+window.scrollY);
