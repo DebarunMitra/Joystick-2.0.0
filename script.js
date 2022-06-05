@@ -53,6 +53,7 @@ function isItInTheCircle(bigRadius, smallRadius, distanceX, distanceY) {
 }
 
 function getMovement(event){
+    event.preventDefault();
     // console.log(event);
     if(event.type === "touchstart"){
         // console.log("touchstart");
