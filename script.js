@@ -62,15 +62,12 @@ function getMovement(event){
 
             document.getElementById("coordinateMetrics").innerText = `X: 0 || Y: 0 || Angle: 0° || Speed: 0%`;
         // document.getElementById("coordinateMetrics").innerText = `X: ${(smallCircleX + deltaX)} || Y: ${(smallCircleY + deltaY)} || Angle: ${angle}`;
-        document.getElementById("js-small-circle").style.left =  smallCircleX+"px"; // 48 = smallcircel radius 
+        document.getElementById("js-small-circle").style.left =  smallCircleX+"px"; 
         document.getElementById("js-small-circle").style.top = smallCircleY+"px";
         // console.log("end-angle: "+angle);
     }else if(event.type === "touchmove"){
         // console.log("touchmove");
-        // console.log("X: "+event.changedTouches[0].clientX);
-        // console.log("Y: "+event.changedTouches[0].clientY);
-        // console.log("clientX: "+clientX);
-        // console.log("clientY: "+clientY);
+       
         deltaX = event.changedTouches[0].clientX - clientX;
         deltaY = event.changedTouches[0].clientY - clientY;
         let smallCirclecoordinates = getCoordinate("js-small-circle"),
@@ -79,16 +76,7 @@ function getMovement(event){
             smallCircleY = (bigCirclecoordinates.height/2)-(smallCirclecoordinates.height/2),
             angle = getAngle(smallCircleX, smallCircleY, (smallCircleX + deltaX), (smallCircleY + deltaY)),
             speed =  getSpeed(deltaX, deltaY, (bigCirclecoordinates.width/2), (smallCirclecoordinates.width/2));
-            console.log("Speed: "+speed);
-        
-            // console.log("circleX: "+smallCircleX);
-            // console.log("circleY: "+smallCircleY);
-            // console.log("diffX: "+ (event.changedTouches[0].clientX - smallCircleX));
-            // console.log("diffY: "+ (event.changedTouches[0].clientY - smallCircleY));
-            // console.log("deltaX: "+ deltaX);
-            // console.log("deltaY: "+ deltaY);
-            // console.log("left: "+ ((event.changedTouches[0].clientX - smallCircleX)));
-            // console.log("top: "+((event.changedTouches[0].clientY - smallCircleY)));
+            // console.log("Speed: "+speed);
          
         if(isItInTheCircle((bigCirclecoordinates.width/2), (smallCirclecoordinates.width/2), (deltaX), (deltaY))){
             // console.log("Inside");
